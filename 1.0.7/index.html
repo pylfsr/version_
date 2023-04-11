@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+<meta content="An open source Python-embedded LFSR implementation. Create your own Pseudo-Random Generator using PyLFSR and test its properties." name="description" />
+<meta content="lfsr, stream-ciphers, random-generator, linear-feedback-shift-register, galois, a51, galois-lfsr fibona fibonacci-lfsr, open source, software," name="keywords" />
+
+    <title>Linear Feedback Shift Register: PyLFSR &#8212; PyLFSR 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pylfsr_alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="install/index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="linear-feedback-shift-register-pylfsr">
+<h1>Linear Feedback Shift Register: PyLFSR<a class="headerlink" href="#linear-feedback-shift-register-pylfsr" title="Permalink to this heading">¶</a></h1>
+<p><span class="raw-html"><br /></span></p>
+<p><span class="raw-html"><h3><a href="http://PyLFSR.github.io" target="_blank">Github Page</a>  | <a href="https://github.com/Nikeshbajaj/Linear_Feedback_Shift_Register/discussions" target="_blank">Discussion Forum</a> | <a href="https://github.com/Nikeshbajaj/Linear_Feedback_Shift_Register" target="_blank">Github</a></h3></span></p>
+<a class="reference external image-reference" href="https://pepy.tech/project/pylfsr"><img alt="https://static.pepy.tech/personalized-badge/pylfsr?period=total&amp;units=international_system&amp;left_color=black&amp;right_color=orange&amp;left_text=total-downloads" src="https://static.pepy.tech/personalized-badge/pylfsr?period=total&amp;units=international_system&amp;left_color=black&amp;right_color=orange&amp;left_text=total-downloads" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/pylfsr"><img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/pylfsr" /></a>
+<a class="reference external image-reference" href="https://hitsofcode.com/github/Nikeshbajaj/Linear_Feedback_Shift_Register?branch=master"><img alt="PyPI - Hist-of-code" src="https://hitsofcode.com/github/Nikeshbajaj/Linear_Feedback_Shift_Register?branch=master" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/pylfsr"><img alt="CircleCI" src="https://img.shields.io/circleci/build/github/Nikeshbajaj/Linear_Feedback_Shift_Register" /></a>
+<a class="reference external image-reference" href="https://lfsr.readthedocs.io/en/latest/"><img alt="Documentation Status" src="https://readthedocs.org/projects/lfsr/badge/?version=latest" /></a>
+<a class="reference external image-reference" href="https://pypi.python.org/pypi/pylfsr"><img alt="PyPI" src="https://img.shields.io/pypi/v/pylfsr?style=plastic" /></a>
+<a class="reference external image-reference" href="https://github.com/Nikeshbajaj/Linear_Feedback_Shift_Register"><img alt="https://img.shields.io/github/license/Nikeshbajaj/Linear_Feedback_Shift_Register" src="https://img.shields.io/github/license/Nikeshbajaj/Linear_Feedback_Shift_Register" /></a>
+<img alt="PyPI Format" src="https://img.shields.io/pypi/format/pylfsr" />
+<img alt="PyPI Implementation" src="https://img.shields.io/pypi/implementation/pylfsr" />
+<img alt="PyPI Python Version" src="https://img.shields.io/pypi/pyversions/pylfsr" />
+<img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/Nikeshbajaj/Linear_Feedback_Shift_Register?style=social" />
+<img alt="GitHub forks" src="https://img.shields.io/github/forks/Nikeshbajaj/Linear_Feedback_Shift_Register?style=social" />
+<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.7501241"><img alt="https://zenodo.org/badge/DOI/10.5281/zenodo.7501241.svg" src="https://zenodo.org/badge/DOI/10.5281/zenodo.7501241.svg" /></a>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><figure class="align-default">
+<img alt="https://raw.githubusercontent.com/nikeshbajaj/Linear_Feedback_Shift_Register/master/images/FibanacciLFSR_2.gif" src="https://raw.githubusercontent.com/nikeshbajaj/Linear_Feedback_Shift_Register/master/images/FibanacciLFSR_2.gif" />
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Linear Feedback Shift Register - Documentation.</strong></p>
+<p>PyLFSR is an open source Python library to create Pseudo-Random Generator based on Linear Feedback Shift Registe.
+It is easy to use and create Pseudo-Random Generator, with custom configurations, such as A5/1, its enhacement,
+Geffe Genrator and many more. A generated sequence can be tested across different properties.</p>
+<p>A simple example of generating 5-bit LFSR with feedback polynomial of p(x) = x<sup>5</sup>+ x<sup>4</sup>+ x<sup>3</sup>+ x<sup>2</sup>+1 :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pylfsr</span> <span class="kn">import</span> <span class="n">LFSR</span>
+
+
+<span class="n">state</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">fpoly</span><span class="o">=</span><span class="n">fpoly</span><span class="p">,</span><span class="n">initstate</span> <span class="o">=</span><span class="n">state</span><span class="p">)</span>
+
+<span class="c1"># Generate K-bits</span>
+<span class="n">k</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">seq_k</span>  <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">runKCycle</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;10 bits&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">seq_k</span><span class="p">)</span>
+
+<span class="c1"># Generate bits of one full period.</span>
+<span class="c1"># Expected period of LFSR = 2^M-1, for M-bit LFSR).</span>
+<span class="n">seq_full</span>  <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">runFullPeriod</span><span class="p">()</span>
+<span class="c1"># The optimal value for x is stored in `x.value`.</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Full period of LFSR = 31-cycles&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">seq_full</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span> <span class="n">bits</span>
+
+<span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="n">Full</span> <span class="n">period</span> <span class="n">of</span> <span class="n">LFSR</span> <span class="o">=</span> <span class="mi">31</span><span class="o">-</span><span class="n">cycles</span>
+
+<span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><span class="raw-html"><br/></span>
+<span class="raw-html"><hr></span></p>
+<p><strong>Authors/Contacts:</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Authors</strong>: Nikesh Bajaj, Jesús Requena Carrión</p></li>
+<li><p><strong>Version</strong>: 1.0.7 | 03/01/2023</p></li>
+<li><p><strong>Homepage</strong>   : <a class="reference external" href="https://pylfsr.github.io">https://pylfsr.github.io</a></p></li>
+</ul>
+</div></blockquote>
+<p><strong>Feedback/Contact/Contribute</strong></p>
+<p>If any doubt, confusion or feedback please contact me</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>n.bajaj[AT]qmul.ac.uk</cite></p></li>
+<li><p><cite>n.bajaj[AT]imperial.ac.uk</cite></p></li>
+<li><p><cite>nikkeshbajaj[AT]gmail[dot?]</cite></p></li>
+</ul>
+<p>Nikesh Bajaj: <a class="reference external" href="http://nikeshbajaj.in">http://nikeshbajaj.in</a></p>
+<p><strong>Queen Mary University of London</strong></p>
+<p><strong>Imperial Collage London</strong></p>
+</div></blockquote>
+<p><span class="raw-html"><br/></span>
+<span class="raw-html"><hr></span>
+<span class="raw-html"><h3><a href="http://PyLFSR.github.io" target="_blank">Github Page</a>  | <a href="https://github.com/Nikeshbajaj/Linear_Feedback_Shift_Register/discussions" target="_blank">Discussion Forum</a> | <a href="https://github.com/Nikeshbajaj/Linear_Feedback_Shift_Register" target="_blank">Github</a></h3></span>
+<span class="raw-html"><hr></span></p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">PyLFSR</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Nikeshbajaj&repo=Linear_Feedback_Shift_Register&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install/index.html#useful-links">Useful Links</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html#basic-examples">Basic Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="properties/index.html">LFSR Properties</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="viz/index.html">Visualisation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="methods/index.html">List of Methods</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="generators/index.html">Generators</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api_ref/api.html">API References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_ref/api.html#lfsr-class">LFSR Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_ref/api.html#list-of-methods">List of Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_ref/api.html#attributes">Attributes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="matlab/index.html">Matlab Code</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script><div>
+    <h3>
+        Version selector
+    </h3>
+    <select id="dynamic_selector" name="versions" onchange="if (this.value) window.location.href=this.value">
+    </select>
+    <script>
+        obj = $.getJSON("https://raw.githubusercontent.com/Nikeshbajaj/Linear_Feedback_Shift_Register/master/versions.json")
+            .done(function (data) {
+                const base_url = "https://pylfsr.github.io/"
+                let html = "<option value='' selected>Choose version here</option>";
+                html += "<option value=" + base_url + ">latest" + ""
+                for (let i = 0; i < data.length; i++) {
+                    html += "<option value=" + base_url + "version/"  + data[i] + ">" + data[i] + ""
+                }
+                document.getElementById("dynamic_selector").innerHTML = html;
+            });
+    </script>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Nikesh Bajaj.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/Nikeshbajaj/Linear_Feedback_Shift_Register" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'G-94J9GBEGTM']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

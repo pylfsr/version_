@@ -1,0 +1,52 @@
+.. role:: raw-html(raw)
+    :format: html
+
+
+Installation
+------------
+
+
+.. Installation
+.. ============
+
+**Requirement** : *numpy*,  *matplotlib*
+
+**With pip:**
+
+::
+  
+  pip install pylfsr
+
+
+**With conda**
+
+::
+  
+  conda install -c nikeshbajaj pylfsr
+
+
+*in process of including in conda-forge*
+
+
+**Build from source**
+
+Download the repository or clone it with git, after cd in directory build it from source with
+
+::
+
+  python setup.py install
+
+
+:raw-html:`<br />`
+
+
+Useful Links
+------------
+
+.. Useful Links
+.. ============
+
+* **Homepage**   - http://PyLFSR.github.io
+* **Documentation** - https://lfsr.readthedocs.io
+* **Github**	    - https://github.com/Nikeshbajaj/Linear_Feedback_Shift_Register
+* **PyPi-project**  - https://pypi.org/project/pylfsr

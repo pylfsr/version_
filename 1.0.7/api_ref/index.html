@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>API Doc &#8212; PyLFSR 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pylfsr_alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="api-doc">
+<h1>API Doc<a class="headerlink" href="#api-doc" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#lfsr-class">LFSR Class</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#parameters">Parameters:</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#list-of-methods">List of Methods</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api.html#methods">Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#clocking-running-lfsr">Clocking (running LFSR):</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#setters">Setters :</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#getters">Getters:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#testing-lfsr-properties">Testing LFSR Properties:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#displaying-printing">Displaying/printing:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api.html#deprecated-replaced-methods">Deprecated/replaced methods :</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#attributes">Attributes</a></li>
+</ul>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">PyLFSR</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Nikeshbajaj&repo=Linear_Feedback_Shift_Register&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html#useful-links">Useful Links</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html#basic-examples">Basic Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../properties/index.html">LFSR Properties</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../viz/index.html">Visualisation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../generators/index.html">Generators</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#lfsr-class">LFSR Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#list-of-methods">List of Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html#attributes">Attributes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../matlab/index.html">Matlab Code</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script><div>
+    <h3>
+        Version selector
+    </h3>
+    <select id="dynamic_selector" name="versions" onchange="if (this.value) window.location.href=this.value">
+    </select>
+    <script>
+        obj = $.getJSON("https://raw.githubusercontent.com/Nikeshbajaj/Linear_Feedback_Shift_Register/master/versions.json")
+            .done(function (data) {
+                const base_url = "https://pylfsr.github.io/"
+                let html = "<option value='' selected>Choose version here</option>";
+                html += "<option value=" + base_url + ">latest" + ""
+                for (let i = 0; i < data.length; i++) {
+                    html += "<option value=" + base_url + "version/"  + data[i] + ">" + data[i] + ""
+                }
+                document.getElementById("dynamic_selector").innerHTML = html;
+            });
+    </script>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Nikesh Bajaj.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api_ref/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/Nikeshbajaj/Linear_Feedback_Shift_Register" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'G-94J9GBEGTM']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

@@ -1,0 +1,31 @@
+
+API Doc
+========
+
+
+.. .. _basic:
+
+.. Basic examples
+.. --------------
+
+
+.. - :doc:`API Class <api>`
+
+
+
+
+.. toctree::  
+   :maxdepth: 3
+
+   api
+
+
+
+
+.. .. _basic:
+
+.. Basic examples
+.. --------------
+
+
+.. - :doc:`Least squares <basic/least_squares>` `[.ipynb] <https://colab.research.google.com/github/cvxpy/cvxpy/blob/master/examples/notebooks/WWW/least_squares.ipynb>`_

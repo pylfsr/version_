@@ -1,0 +1,186 @@
+Linear Feedback Shift Register: PyLFSR
+======================================
+
+
+.. meta::
+   :description: An open source Python-embedded LFSR implementation.
+                 Create your own Pseudo-Random Generator using PyLFSR and test its properties.
+   :keywords: lfsr, stream-ciphers, random-generator, linear-feedback-shift-register, galois, a51, galois-lfsr fibona fibonacci-lfsr, open source, software,
+
+.. role:: raw-html(raw)
+    :format: html
+
+
+:raw-html:`<br />`
+
+:raw-html:`<h3><a href="http://PyLFSR.github.io" target="_blank">Github Page</a>  | <a href="https://github.com/Nikeshbajaj/Linear_Feedback_Shift_Register/discussions" target="_blank">Discussion Forum</a> | <a href="https://github.com/Nikeshbajaj/Linear_Feedback_Shift_Register" target="_blank">Github</a></h3>`
+
+
+
+.. image:: https://static.pepy.tech/personalized-badge/pylfsr?period=total&units=international_system&left_color=black&right_color=orange&left_text=total-downloads
+  :target: https://pepy.tech/project/pylfsr
+.. image:: https://img.shields.io/pypi/dm/pylfsr
+  :target: https://pypi.python.org/pypi/pylfsr
+  :alt: PyPI - Downloads
+.. image:: https://hitsofcode.com/github/Nikeshbajaj/Linear_Feedback_Shift_Register?branch=master
+  :target: https://hitsofcode.com/github/Nikeshbajaj/Linear_Feedback_Shift_Register?branch=master
+  :alt: PyPI - Hist-of-code
+.. image:: https://img.shields.io/circleci/build/github/Nikeshbajaj/Linear_Feedback_Shift_Register
+  :target: https://pypi.python.org/pypi/pylfsr
+  :alt: CircleCI
+.. image:: https://readthedocs.org/projects/lfsr/badge/?version=latest
+  :target: https://lfsr.readthedocs.io/en/latest/
+  :alt: Documentation Status
+.. image:: https://img.shields.io/pypi/v/pylfsr?style=plastic
+  :target: https://pypi.python.org/pypi/pylfsr
+  :alt: PyPI
+.. image:: https://img.shields.io/github/license/Nikeshbajaj/Linear_Feedback_Shift_Register
+  :target: https://github.com/Nikeshbajaj/Linear_Feedback_Shift_Register
+.. image:: https://img.shields.io/pypi/format/pylfsr
+  :alt: PyPI Format
+.. image:: https://img.shields.io/pypi/implementation/pylfsr
+  :alt: PyPI Implementation
+.. image:: https://img.shields.io/pypi/pyversions/pylfsr
+  :alt: PyPI Python Version  
+.. image:: https://img.shields.io/github/stars/Nikeshbajaj/Linear_Feedback_Shift_Register?style=social
+  :alt: GitHub Repo stars
+.. image:: https://img.shields.io/github/forks/Nikeshbajaj/Linear_Feedback_Shift_Register?style=social
+  :alt: GitHub forks
+.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.7501241.svg
+   :target: https://doi.org/10.5281/zenodo.7501241
+
+
+.. list-table:: 
+
+    * - .. figure:: https://raw.githubusercontent.com/nikeshbajaj/Linear_Feedback_Shift_Register/master/images/FibanacciLFSR_2.gif
+
+
+
+**Linear Feedback Shift Register - Documentation.**
+
+
+PyLFSR is an open source Python library to create Pseudo-Random Generator based on Linear Feedback Shift Registe.
+It is easy to use and create Pseudo-Random Generator, with custom configurations, such as A5/1, its enhacement,
+Geffe Genrator and many more. A generated sequence can be tested across different properties.
+
+
+A simple example of generating 5-bit LFSR with feedback polynomial of p(x) = x\ :sup:`5`\ + x\ :sup:`4`\ + x\ :sup:`3`\ + x\ :sup:`2`\ +1 :
+
+
+.. code:: python
+
+    import numpy as np
+    from pylfsr import LFSR
+
+
+    state = [0,0,0,1,0]
+    fpoly = [5,4,3,2]
+    L = LFSR(fpoly=fpoly,initstate =state)
+
+    # Generate K-bits
+    k=10
+    seq_k  = L.runKCycle(k)
+
+    print('10 bits')
+    print(seq_k)
+
+    # Generate bits of one full period.
+    # Expected period of LFSR = 2^M-1, for M-bit LFSR).
+    seq_full  = L.runFullPeriod()
+    # The optimal value for x is stored in `x.value`.
+    
+    print('Full period of LFSR = 31-cycles')
+    print(seq_full)
+
+
+.. code-block:: python
+
+    10 bits
+
+    [0 1 0 0 0 1 1 1 0 1]
+
+    Full period of LFSR = 31-cycles
+
+    [0 1 0 0 0 1 1 1 0 1 1 1 1 1 0 0 1 0 0 1 1 0 0 0 0 1 0 1 1 0 1]
+
+:raw-html:`<br/>`
+:raw-html:`<hr>`
+
+
+**Authors/Contacts:**
+
+  * **Authors**: Nikesh Bajaj, Jesús Requena Carrión
+  * **Version**: 1.0.7 | 03/01/2023
+  * **Homepage**   : https://pylfsr.github.io
+
+**Feedback/Contact/Contribute**
+
+.. include:: contacts.rst
+
+
+:raw-html:`<br/>`
+:raw-html:`<hr>`
+:raw-html:`<h3><a href="http://PyLFSR.github.io" target="_blank">Github Page</a>  | <a href="https://github.com/Nikeshbajaj/Linear_Feedback_Shift_Register/discussions" target="_blank">Discussion Forum</a> | <a href="https://github.com/Nikeshbajaj/Linear_Feedback_Shift_Register" target="_blank">Github</a></h3>`
+:raw-html:`<hr>`
+
+
+.. toctree::
+   :hidden:
+
+   install/index
+   
+
+.. toctree::
+   :hidden:   
+   :maxdepth: 3
+
+   examples/index
+
+
+.. toctree::
+   :hidden:   
+   :maxdepth: 3
+
+   LFSR Properties <properties/index>
+
+
+.. toctree::
+   :hidden:   
+   :maxdepth: 3
+
+   Visualisation <viz/index>
+
+
+
+.. toctree::
+   :hidden:   
+   :maxdepth: 2
+
+   List of Methods <methods/index>
+
+
+.. toctree::
+   :hidden:   
+   :maxdepth: 3
+
+   Generators <generators/index>
+
+
+.. toctree::
+   :hidden:   
+   :maxdepth: 2
+
+   API Doc <api_ref/api>
+
+
+.. toctree::
+   :hidden:   
+   :maxdepth: 3
+
+   Matlab Code <matlab/index>
+
+
+
+
+
+.. <a href='https://clustrmaps.com/site/1bu4a'  title='Visit tracker'><img src='//clustrmaps.com/map_v2.png?cl=080808&w=a&t=n&d=d2iVoHK-KcdA_ymLVqT1XrkhBh1rtJsJMuzLMBs0ZLY&co=ffffff&ct=808080'/></a>

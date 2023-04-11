@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Generators &#8212; PyLFSR 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pylfsr_alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="API References" href="../api_ref/api.html" />
+    <link rel="prev" title="List of Methods" href="../methods/index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="generators">
+<h1>Generators<a class="headerlink" href="#generators" title="Permalink to this heading">¶</a></h1>
+<section id="a5-1-gsm-stream-cipher-generator">
+<h2>A5/1 GSM Stream cipher generator<a class="headerlink" href="#a5-1-gsm-stream-cipher-generator" title="Permalink to this heading">¶</a></h2>
+<p>Ref: <a class="reference external" href="https://en.wikipedia.org/wiki/A5/1">https://en.wikipedia.org/wiki/A5/1</a></p>
+<img alt="https://upload.wikimedia.org/wikipedia/commons/5/5e/A5-1_GSM_cipher.svg" src="https://upload.wikimedia.org/wikipedia/commons/5/5e/A5-1_GSM_cipher.svg" /><p>Image Socuce: <a class="reference external" href="https://en.wikipedia.org/wiki/A5/1">https://en.wikipedia.org/wiki/A5/1</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">pylfsr</span> <span class="kn">import</span> <span class="n">A5_1</span>
+
+<span class="n">A5</span> <span class="o">=</span> <span class="n">A5_1</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s1">&#39;random&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;key: &#39;</span><span class="p">,</span><span class="n">A5</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+<span class="n">A5</span><span class="o">.</span><span class="n">R1</span><span class="o">.</span><span class="n">Viz</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;R1&#39;</span><span class="p">)</span>
+<span class="n">A5</span><span class="o">.</span><span class="n">R2</span><span class="o">.</span><span class="n">Viz</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;R2&#39;</span><span class="p">)</span>
+<span class="n">A5</span><span class="o">.</span><span class="n">R3</span><span class="o">.</span><span class="n">Viz</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;R3&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;key: &#39;</span><span class="p">,</span><span class="n">A5</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;count </span><span class="se">\t</span><span class="s1"> cbit</span><span class="se">\t\t</span><span class="s1">clk</span><span class="se">\t</span><span class="s1"> R1_R2_R3</span><span class="se">\t</span><span class="s1">outbit </span><span class="se">\t</span><span class="s1"> seq&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">A5</span><span class="o">.</span><span class="n">count</span><span class="p">,</span><span class="n">A5</span><span class="o">.</span><span class="n">getCbits</span><span class="p">(),</span><span class="n">A5</span><span class="o">.</span><span class="n">clock_bit</span><span class="p">,</span><span class="n">A5</span><span class="o">.</span><span class="n">getLastbits</span><span class="p">(),</span><span class="n">A5</span><span class="o">.</span><span class="n">outbit</span><span class="p">,</span><span class="n">A5</span><span class="o">.</span><span class="n">getSeq</span><span class="p">(),</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">A5</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">80</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Output: &#39;</span><span class="p">,</span><span class="n">A5</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span>
+
+<span class="n">A5</span><span class="o">.</span><span class="n">runKCycle</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">A5</span><span class="o">.</span><span class="n">getSeq</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="enhanced-a5-1">
+<h2>Enhanced A5/1<a class="headerlink" href="#enhanced-a5-1" title="Permalink to this heading">¶</a></h2>
+<p>Reference Article: <strong>Enhancement of A5/1</strong>: <a class="reference external" href="https://doi.org/10.1109/ETNCC.2011.5958486">https://doi.org/10.1109/ETNCC.2011.5958486</a></p>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/nikeshbajaj/Linear_Feedback_Shift_Register/master/images/Enhanced_A51.png"><img alt="https://raw.githubusercontent.com/nikeshbajaj/Linear_Feedback_Shift_Register/master/images/Enhanced_A51.png" src="https://raw.githubusercontent.com/nikeshbajaj/Linear_Feedback_Shift_Register/master/images/Enhanced_A51.png" style="width: 70%;" /></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Three LFSRs initialzed with &#39;ones&#39; though they are intialized with encription key</span>
+<span class="n">R1</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">19</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">14</span><span class="p">])</span>
+<span class="n">R2</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">23</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+<span class="n">R3</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">22</span><span class="p">,</span><span class="mi">21</span><span class="p">])</span>
+
+<span class="c1"># clocking bits</span>
+<span class="n">b1</span> <span class="o">=</span> <span class="n">R1</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span>
+<span class="n">b2</span> <span class="o">=</span> <span class="n">R3</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+<span class="n">b3</span> <span class="o">=</span> <span class="n">R3</span><span class="o">.</span><span class="n">state</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="geffe-generator">
+<h2>Geffe Generator<a class="headerlink" href="#geffe-generator" title="Permalink to this heading">¶</a></h2>
+<dl class="simple">
+<dt>Ref: Schneier, Bruce. Applied cryptography: protocols, algorithms, and source code in C. john wiley &amp; sons, 2007.</dt><dd><p>Chaper 16</p>
+</dd>
+</dl>
+<img alt="https://raw.githubusercontent.com/nikeshbajaj/Linear_Feedback_Shift_Register/master/images/Geffe_0.jpg" src="https://raw.githubusercontent.com/nikeshbajaj/Linear_Feedback_Shift_Register/master/images/Geffe_0.jpg" />
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">pylfsr</span> <span class="kn">import</span> <span class="n">Geffe</span><span class="p">,</span> <span class="n">LFSR</span>
+
+<span class="c1"># List of 8 5-bit LFSRs with default feedback polynomial and random initial state</span>
+<span class="n">kLFSR</span> <span class="o">=</span> <span class="p">[</span><span class="n">LFSR</span><span class="p">(</span><span class="n">initstate</span><span class="o">=</span><span class="s1">&#39;random&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)]</span>
+
+<span class="c1"># A 5-bit LFSR with for selecting one of 8 output at a time</span>
+<span class="n">cLFSR</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">initstate</span><span class="o">=</span><span class="s1">&#39;random&#39;</span><span class="p">)</span>
+
+<span class="n">GG</span> <span class="o">=</span> <span class="n">Geffe</span><span class="p">(</span><span class="n">kLFSR_list</span><span class="o">=</span><span class="n">kLFSR</span><span class="p">,</span> <span class="n">cLFSR</span><span class="o">=</span><span class="n">cLFSR</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;key: &#39;</span><span class="p">,</span><span class="n">GG</span><span class="o">.</span><span class="n">getState</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">GG</span><span class="o">.</span><span class="n">count</span><span class="p">,</span><span class="n">GG</span><span class="o">.</span><span class="n">m_count</span><span class="p">,</span><span class="n">GG</span><span class="o">.</span><span class="n">outbit_k</span><span class="p">,</span><span class="n">GG</span><span class="o">.</span><span class="n">sel_k</span><span class="p">,</span><span class="n">GG</span><span class="o">.</span><span class="n">outbit</span><span class="p">,</span><span class="n">GG</span><span class="o">.</span><span class="n">getSeq</span><span class="p">(),</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">GG</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+
+<span class="n">GG</span><span class="o">.</span><span class="n">runKCycle</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<span class="n">GG</span><span class="o">.</span><span class="n">getSeq</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">PyLFSR</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Nikeshbajaj&repo=Linear_Feedback_Shift_Register&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html#useful-links">Useful Links</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html#basic-examples">Basic Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../properties/index.html">LFSR Properties</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../viz/index.html">Visualisation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../methods/index.html">List of Methods</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Generators</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#a5-1-gsm-stream-cipher-generator">A5/1 GSM Stream cipher generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enhanced-a5-1">Enhanced A5/1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#geffe-generator">Geffe Generator</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_ref/api.html">API References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_ref/api.html#lfsr-class">LFSR Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_ref/api.html#list-of-methods">List of Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_ref/api.html#attributes">Attributes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../matlab/index.html">Matlab Code</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script><div>
+    <h3>
+        Version selector
+    </h3>
+    <select id="dynamic_selector" name="versions" onchange="if (this.value) window.location.href=this.value">
+    </select>
+    <script>
+        obj = $.getJSON("https://raw.githubusercontent.com/Nikeshbajaj/Linear_Feedback_Shift_Register/master/versions.json")
+            .done(function (data) {
+                const base_url = "https://pylfsr.github.io/"
+                let html = "<option value='' selected>Choose version here</option>";
+                html += "<option value=" + base_url + ">latest" + ""
+                for (let i = 0; i < data.length; i++) {
+                    html += "<option value=" + base_url + "version/"  + data[i] + ">" + data[i] + ""
+                }
+                document.getElementById("dynamic_selector").innerHTML = html;
+            });
+    </script>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Nikesh Bajaj.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/generators/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/Nikeshbajaj/Linear_Feedback_Shift_Register" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'G-94J9GBEGTM']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

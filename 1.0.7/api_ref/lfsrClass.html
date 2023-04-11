@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>API LFSR &#8212; PyLFSR 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pylfsr_alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="api-lfsr">
+<h1>API LFSR<a class="headerlink" href="#api-lfsr" title="Permalink to this heading">¶</a></h1>
+<p><em>class(fpoly=[5,2], initstate=’ones’, verbose=False)</em></p>
+<p><em>help doc</em></p>
+<p><strong>Linear Feedback Shift Register</strong></p>
+<p><strong>#Parameters</strong> ————————————</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>initstate<span class="classifier">binary np.array (row vector) or str =’ones’ or ‘random’, optional (default = ‘ones’)) Initial state of LFSR.                    default =’ones’</span></dt><dd><p>Initial state is intialized with ones and length of register is equal to degree of feedback polynomial
+if state=’rand’, initial state is intialized with random binary sequence of length equal to degree of feedback polynomial</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>fpoly<span class="classifier">List, optional (default=[5,2])</span></dt><dd><p>Feedback polynomial, it has to be primitive polynomial of GF(2) field, for valid output of LFSR
+to get the list of feedback polynomials check method ‘get_fpolyList’
+or check Refeferece:
+Ref: List of some primitive polynomial over GF(2)can be found at
+<a class="reference external" href="http://www.partow.net/programming/polynomials/index.html">http://www.partow.net/programming/polynomials/index.html</a>
+<a class="reference external" href="http://www.ams.org/journals/mcom/1962-16-079/S0025-5718-1962-0148256-1/S0025-5718-1962-0148256-1.pdf">http://www.ams.org/journals/mcom/1962-16-079/S0025-5718-1962-0148256-1/S0025-5718-1962-0148256-1.pdf</a>
+<a class="reference external" href="http://poincare.matf.bg.ac.rs/~ezivkovm/publications/primpol1.pdf">http://poincare.matf.bg.ac.rs/~ezivkovm/publications/primpol1.pdf</a></p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>verbose<span class="classifier">boolean, optional (default=False)</span></dt><dd><p>if True, state of LFSR will be printed at every cycle(iteration)</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>#Attributes</strong> ————————————</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>count<span class="classifier">int</span></dt><dd><p>Count the cycle</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>seq<span class="classifier">np.array shape =(count,)</span></dt><dd><p>Output sequence stored in seq since first cycle.
+If -1, no cycle has been excecuted, count =0</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>outbit<span class="classifier">binary bit</span></dt><dd><p>Current output bit, Last bit of current state
+if -1, no cycle has been excecuted, count =0</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>feedbackbit<span class="classifier">binary bit</span></dt><dd><p>If -1, no cycle has been excecuted, count =0</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>M<span class="classifier">int</span></dt><dd><p>length of LFSR, M-bit LFSR,</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>expectedPeriod<span class="classifier">int</span></dt><dd><p>Expected period of sequence
+if feedback polynomial is primitive and irreducible (as per reference), period will be 2^M -1</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>feedpoly<span class="classifier">str</span></dt><dd><p>feedback polynomial</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p><strong>#Methods</strong> ————————————</p>
+<ul>
+<li><dl>
+<dt>next()</dt><dd><p>run one cycle on LFSR with given feedback polynomial and
+update the count, state, feedback bit, output bit and seq</p>
+<p>return:
+binary bit
+output bit : binary</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>runKCycle(k)</dt><dd><p>run k cycles and update all the Parameters</p>
+<p>return
+tempseq : shape =(k,)</p>
+<blockquote>
+<div><p>output binary sequence of k cycles</p>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>runFullCycle()</dt><dd><p>run full cycle ( = 2^M-1)</p>
+<p>return
+seq : binary output sequence since start: shape = (count,)</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>set(fpoly,state=’ones’)</dt><dd><p>set feedback polynomial and state</p>
+<p>fpoly : list feedback polynomial like [5,4,3,2]</p>
+<p>state : np.array, like np.array([1,0,0,1,1]), default =’ones’
+Initial state is intialized with ones and length of register is equal to degree of feedback polynomial
+if state=’rand’, initial state is intialized with random binary sequence of length equal to degree of feedback polynomial</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>reset()</dt><dd><p>Reseting LFSR to its initial state and count to 0</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>changeFpoly(newfpoly, reset=False)</dt><dd><p>Changing Feedback polynomial
+newfpoly : list like, [5,4,2,1], changing the feedback polynomial</p>
+<p>reset : boolean default=False
+if True, reset all the Parameters : count=0, seq=-1..
+if False, leave the LFSR as it is only change the feedback polynomial as used in <em>‘Enhancement of A5/1: Using variable feedback polynomials of LFSR’</em> ref: 10.1109/ETNCC.2011.5958486</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>check()</dt><dd><p>check if
+-degree of feedback polynomial &lt;= length of LFSR &gt;=1
+-given intistate of LFSR is correct</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>info()</dt><dd><p>display the information about LFSR with current state of variables</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>get_fpolyList(m=None)</dt><dd><p>Get the list of primitive polynomials as feedback polynomials
+for <em>m</em>-bit LFSR
+if <em>m</em> is None, list of feedback polynomials for 1 &lt; <em>m</em> &lt; 32 is return as a dictionary</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>get_Ifpoly(<em>fpoly</em>)</dt><dd><p>Get the image of primitive polynomial <em>fpoly</em>, which is also a valid
+primitive polynomial</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">PyLFSR</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Nikeshbajaj&repo=Linear_Feedback_Shift_Register&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html#useful-links">Useful Links</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html#basic-examples">Basic Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../properties/index.html">LFSR Properties</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../viz/index.html">Visualisation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../generators/index.html">Generators</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html">API Doc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../matlab/index.html">Matlab Code</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script><div>
+    <h3>
+        Version selector
+    </h3>
+    <select id="dynamic_selector" name="versions" onchange="if (this.value) window.location.href=this.value">
+    </select>
+    <script>
+        obj = $.getJSON("https://raw.githubusercontent.com/Nikeshbajaj/Linear_Feedback_Shift_Register/master/versions.json")
+            .done(function (data) {
+                const base_url = "https://pylfsr.github.io/"
+                let html = "<option value='' selected>Choose version here</option>";
+                html += "<option value=" + base_url + ">latest" + ""
+                for (let i = 0; i < data.length; i++) {
+                    html += "<option value=" + base_url + "version/"  + data[i] + ">" + data[i] + ""
+                }
+                document.getElementById("dynamic_selector").innerHTML = html;
+            });
+    </script>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Nikesh Bajaj.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api_ref/lfsrClass.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/Nikeshbajaj/Linear_Feedback_Shift_Register" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'G-94J9GBEGTM']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

@@ -1,0 +1,269 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>API: Supporting Functions &#8212; PyLFSR 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pylfsr_alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="MATLAB CODE" href="../matlab/index.html" />
+    <link rel="prev" title="API: LFSR Class" href="api.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="api-supporting-functions">
+<h1>API: Supporting Functions<a class="headerlink" href="#api-supporting-functions" title="Permalink to this heading">¶</a></h1>
+<p>Supporting Functions for Linear Feedback Shift Register</p>
+<p>get_fpolyList(m=None):</p>
+<blockquote>
+<div><p>Get the list of primitive polynomials as feedback polynomials for m-bit LFSR.
+Only half list of primary primitive polynomials are retuned, not the full list (half list), since for each primary primitive polynomial
+an image polymial can be computed using ‘get_Ifpoly’ method</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>m: 1&lt;int&lt;32, if None, list of feedback polynomials for 1 &lt; m &lt; 32 is return as a dictionary</p>
+</dd>
+<dt>Returns:</dt><dd><p>fpoly_list: list of polynomial if m is not None else a dictionary</p>
+</dd>
+</dl>
+<p>Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pylfsr</span> <span class="k">as</span> <span class="nn">PYL</span>
+<span class="c1">#returns a dictionary of polynomial</span>
+<span class="n">polylist</span> <span class="o">=</span> <span class="n">PYL</span><span class="o">.</span><span class="n">get_fpolyList</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="c1">#returns list of polynomial for m-bit LFSR</span>
+<span class="n">polylist</span> <span class="o">=</span> <span class="n">PYL</span><span class="o">.</span><span class="n">get_fpolyList</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">polylist</span><span class="p">)</span>
+<span class="p">[[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>get_Ifpoly(fpoly)</p>
+<blockquote>
+<div><p>Get image of feebback polynomial
+Get the image of primitive polynomial</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><dl class="simple">
+<dt>fpoly: polynomial as list e.g. [5,2] for x^5 + x^2 + 1</dt><dd><p>: should be a valid primitive polynomial</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>ifpoly: polynomial as list e.g. [5,3] for x^5 + x^3 + 1</p>
+</dd>
+</dl>
+<p>Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pylfsr</span> <span class="k">as</span> <span class="nn">PYL</span>
+
+<span class="c1">#returns image polynomial of given polynomial</span>
+<span class="n">ipoly</span> <span class="o">=</span> <span class="n">PYL</span><span class="o">.</span><span class="n">get_Ifpoly</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">ipoly</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>dispLFSR(state, fpoly, conf=’fibonacci’, seq=’’, out_bit_index=-1, ob=None, fb=None, fs=25, ax=None, show_labels=False, title=’’, title_loc=’left’, box_color=’lightblue’, alpha=0.5, output_arrow_color=’C0’, output_arrow_style=’h’)</p>
+<blockquote>
+<div><p>Display LFSR for given state, fpoly and conf.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>state: current state of LFSR
+fpoly:  feedback polynomial of LFSR
+seq: str, output sequence
+ob: output bit
+fb: feedback bit
+ax: axis to plot, if None, new axis will be created, (default None)
+show: if True, plt.show() will be excecuted, (default True)
+fs:  fontsize (default 25)
+show_label: if true, will display names
+title: str, title of figure, default ‘’,
+title_loc, alignment of title, ‘left’, ‘right’, ‘center’, (default ‘left’)
+box_color: color of register box, default=’lightblue’</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pylfsr</span> <span class="k">as</span> <span class="nn">PYL</span>
+
+<span class="n">PYL</span><span class="o">.</span><span class="n">dispLFSR</span><span class="p">(</span><span class="n">state</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="n">fpoly</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="n">conf</span><span class="o">=</span><span class="s1">&#39;fibonacci&#39;</span><span class="p">,</span> <span class="n">seq</span><span class="o">=</span><span class="s1">&#39;111&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;R1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>lempel_ziv_complexity(seq):</p>
+<blockquote>
+<div><p>Lempel-Ziv Complexity.
+It is defined as the number of different patterns exists in a given stream.</p>
+<p>As an example:
+s = ‘1001111011000010’
+patterns ==&gt; 1, 0, 01, 11, 10, 110, 00, 010
+#patterns = 8</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>seq: as string of sequence, could be binary or any other</p>
+</dd>
+<dt>Returns:</dt><dd><p>lc: number of different patterns in LZ dictionary</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>lempel_ziv_patterns(seq)</p>
+<blockquote>
+<div><p>Lempel-Ziv patterns.
+It is defined as a set of different patterns exists in a given sequence.</p>
+<p>As an example:
+s = ‘1001111011000010’
+patterns ==&gt; 1, 0, 01, 11, 10, 110, 00, 010</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>seq: as string of sequence, could be binary or any other</p>
+</dd>
+<dt>Returns:</dt><dd><p>dictionary of all the LZ patterns in given sequence</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">PyLFSR</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Nikeshbajaj&repo=Linear_Feedback_Shift_Register&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html#useful-links">Useful Links</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html#basic-examples">Basic Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../properties/index.html">LFSR Properties</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../viz/index.html">Visualisation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../generators/index.html">Generators</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Doc</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#basic-examples">Basic examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api.html">API: LFSR Class</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">API: Supporting Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#id1">Basic examples</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../matlab/index.html">Matlab Code</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script><div>
+    <h3>
+        Version selector
+    </h3>
+    <select id="dynamic_selector" name="versions" onchange="if (this.value) window.location.href=this.value">
+    </select>
+    <script>
+        obj = $.getJSON("https://raw.githubusercontent.com/Nikeshbajaj/Linear_Feedback_Shift_Register/master/versions.json")
+            .done(function (data) {
+                const base_url = "https://pylfsr.github.io/"
+                let html = "<option value='' selected>Choose version here</option>";
+                html += "<option value=" + base_url + ">latest" + ""
+                for (let i = 0; i < data.length; i++) {
+                    html += "<option value=" + base_url + "version/"  + data[i] + ">" + data[i] + ""
+                }
+                document.getElementById("dynamic_selector").innerHTML = html;
+            });
+    </script>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Nikesh Bajaj.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/api_ref/api_fun.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/Nikeshbajaj/Linear_Feedback_Shift_Register" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'G-94J9GBEGTM']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>

@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Displaying &amp; Visualisation &#8212; PyLFSR 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pylfsr_alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="List of Methods" href="../methods/index.html" />
+    <link rel="prev" title="LFSR Properties" href="../properties/index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="displaying-visualisation">
+<h1>Displaying &amp; Visualisation<a class="headerlink" href="#displaying-visualisation" title="Permalink to this heading">¶</a></h1>
+<section id="printing-displaying-info">
+<h2>Printing/displaying Info<a class="headerlink" href="#printing-displaying-info" title="Permalink to this heading">¶</a></h2>
+<p>Current info</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="n">state</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+  <span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+  <span class="n">L</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">fpoly</span><span class="o">=</span><span class="n">fpoly</span><span class="p">,</span><span class="n">initstate</span> <span class="o">=</span><span class="n">state</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+  <span class="n">L</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+
+
+<span class="mi">5</span><span class="o">-</span><span class="n">bit</span> <span class="n">LFSR</span> <span class="k">with</span> <span class="n">feedback</span> <span class="n">polynomial</span>  <span class="n">x</span><span class="o">^</span><span class="mi">5</span> <span class="o">+</span> <span class="n">x</span><span class="o">^</span><span class="mi">4</span> <span class="o">+</span> <span class="n">x</span><span class="o">^</span><span class="mi">3</span> <span class="o">+</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span> <span class="k">with</span>
+<span class="n">Expected</span> <span class="n">Period</span> <span class="p">(</span><span class="k">if</span> <span class="n">polynomial</span> <span class="ow">is</span> <span class="n">primitive</span><span class="p">)</span> <span class="o">=</span>  <span class="mi">31</span>
+<span class="n">Computing</span> <span class="n">configuration</span> <span class="ow">is</span> <span class="nb">set</span> <span class="n">to</span> <span class="n">Fibonacci</span> <span class="k">with</span> <span class="n">output</span> <span class="n">sequence</span> <span class="n">taken</span> <span class="kn">from</span> <span class="mi">5</span><span class="o">-</span><span class="n">th</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="n">register</span>
+<span class="n">Current</span> <span class="p">:</span>
+<span class="n">State</span>        <span class="p">:</span>  <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">Count</span>        <span class="p">:</span>  <span class="mi">0</span>
+<span class="n">Output</span> <span class="n">bit</span>   <span class="p">:</span>  <span class="o">-</span><span class="mi">1</span>
+<span class="n">feedback</span> <span class="n">bit</span> <span class="p">:</span>  <span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+
+      <span class="n">LFSR</span> <span class="p">(</span> <span class="n">x</span><span class="o">^</span><span class="mi">5</span> <span class="o">+</span> <span class="n">x</span><span class="o">^</span><span class="mi">4</span> <span class="o">+</span> <span class="n">x</span><span class="o">^</span><span class="mi">3</span> <span class="o">+</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="o">==================================================</span>
+      <span class="n">initstate</span>       <span class="o">=</span>       <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>
+      <span class="n">fpoly</span>           <span class="o">=</span>       <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+      <span class="n">conf</span>            <span class="o">=</span>       <span class="n">fibonacci</span>
+      <span class="n">order</span>           <span class="o">=</span>       <span class="mi">5</span>
+      <span class="n">expectedPeriod</span>  <span class="o">=</span>       <span class="mi">31</span>
+      <span class="n">seq_bit_index</span>   <span class="o">=</span>       <span class="o">-</span><span class="mi">1</span>
+      <span class="n">count</span>           <span class="o">=</span>       <span class="mi">0</span>
+      <span class="n">state</span>           <span class="o">=</span>       <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>
+      <span class="n">outbit</span>          <span class="o">=</span>       <span class="o">-</span><span class="mi">1</span>
+      <span class="n">feedbackbit</span>     <span class="o">=</span>       <span class="o">-</span><span class="mi">1</span>
+      <span class="n">seq</span>             <span class="o">=</span>       <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+      <span class="n">counter_start_zero</span>      <span class="o">=</span>       <span class="kc">True</span>
+</pre></div>
+</div>
+</section>
+<section id="parameters-setting">
+<h2>Parameters setting<a class="headerlink" href="#parameters-setting" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">repr</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>“LFSR(‘fpoly’=[5, 4, 3, 2], ‘initstate’=[0, 0, 0, 1, 0],’conf’=fibonacci, ‘seq_bit_index’=-1,’verbose’=True, ‘counter_start_zero’=True)”</p>
+</section>
+<section id="visualise-lfsr">
+<h2>Visualise LFSR<a class="headerlink" href="#visualise-lfsr" title="Permalink to this heading">¶</a></h2>
+<p><strong>Plotting LFSR with pylsr</strong></p>
+<p>Each LFSR can be visualize as it in current state by using <em>.Viz()</em> method</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">initstate</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">fpoly</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">L</span><span class="o">.</span><span class="n">runKCycle</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">L</span><span class="o">.</span><span class="n">Viz</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;R1&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="https://raw.githubusercontent.com/nikeshbajaj/Linear_Feedback_Shift_Register/master/images/5bit_1.jpg" src="https://raw.githubusercontent.com/nikeshbajaj/Linear_Feedback_Shift_Register/master/images/5bit_1.jpg" />
+</section>
+<section id="dynamic-visualisation-of-lfsr-animation">
+<h2>Dynamic visualisation of LFSR - Animation<a class="headerlink" href="#dynamic-visualisation-of-lfsr-animation" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">notebook</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">initstate</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">fpoly</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">counter_start_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">35</span><span class="p">):</span>
+  <span class="n">ax</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+  <span class="n">L</span><span class="o">.</span><span class="n">Viz</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;R1&#39;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="o">-</span><span class="mf">0.1</span><span class="p">,</span><span class="kc">None</span><span class="p">])</span>
+  <span class="c1">#plt.tight_layout()</span>
+  <span class="n">L</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+  <span class="n">fig</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="https://raw.githubusercontent.com/nikeshbajaj/Linear_Feedback_Shift_Register/master/images/5bit_1.gif" src="https://raw.githubusercontent.com/nikeshbajaj/Linear_Feedback_Shift_Register/master/images/5bit_1.gif" />
+<p>Similarly other can be created as</p>
+<img alt="https://raw.githubusercontent.com/nikeshbajaj/Linear_Feedback_Shift_Register/master/images/FibanacciLFSR_2.gif" src="https://raw.githubusercontent.com/nikeshbajaj/Linear_Feedback_Shift_Register/master/images/FibanacciLFSR_2.gif" />
+<img alt="https://raw.githubusercontent.com/nikeshbajaj/Linear_Feedback_Shift_Register/master/images/GaloisLFSR_1.gif" src="https://raw.githubusercontent.com/nikeshbajaj/Linear_Feedback_Shift_Register/master/images/GaloisLFSR_1.gif" />
+</section>
+<section id="show-each-state-and-each-cycle">
+<h2>Show each state and each cycle<a class="headerlink" href="#show-each-state-and-each-cycle" title="Permalink to this heading">¶</a></h2>
+<p><strong>Setting clock start:</strong></p>
+<blockquote>
+<div><p>Initial output bit
+An argument <em>counter_start_zero</em> can be used to initialize the output bit.
+* If <em>counter_start_zero=True</em> (default), the output bit is initialize by -1, to illustrate that No clock is provided yet.</p>
+<blockquote>
+<div><p>In this case, <em>cout</em> (counter) starts with 0. The first output is not computed until first cylce is executed, such as by executing .next(), .runFullCycle, etc</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>If <em>counter_start_zero=False</em>, the output bit is initialize by the last bit of register. In one sense, first clock cycle is executed.
+This is why, in this case, <em>cout</em> (counter) starts with 1.</p></li>
+</ul>
+</div></blockquote>
+<p>In both cases counter_start_zero =True or False, the L.seq will be same, the only difference is the total number of output bits produced after N-cycles, i.e.
+when setting <em>counter_start_zero = False</em>, there will be one extra bit, since first bit was already computed. To understand this, look at following two examples.
+<em>counter_start_zero=True</em> can be seen as dealyed response by one bit.</p>
+</section>
+<section id="visualise-3-bit-lfsr">
+<h2>Visualise 3-bit LFSR<a class="headerlink" href="#visualise-3-bit-lfsr" title="Permalink to this heading">¶</a></h2>
+<p><strong>At each step, with default ‘counter_start_zero = True’</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">initstate</span><span class="o">=</span><span class="n">state</span><span class="p">,</span><span class="n">fpoly</span><span class="o">=</span><span class="n">fpoly</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;count </span><span class="se">\t</span><span class="s1"> state </span><span class="se">\t\t</span><span class="s1">outbit </span><span class="se">\t</span><span class="s1"> seq&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">L</span><span class="o">.</span><span class="n">count</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">state</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">outbit</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">seq</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">L</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Output: &#39;</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">count</span>          <span class="n">state</span>          <span class="n">outbit</span>   <span class="n">seq</span>
+<span class="o">--------------------------------------------------</span>
+<span class="mi">0</span>             <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>         <span class="o">-</span><span class="mi">1</span>      <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="mi">1</span>             <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>         <span class="mi">1</span>       <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="mi">2</span>             <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>         <span class="mi">1</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>
+<span class="mi">3</span>             <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span>         <span class="mi">1</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>
+<span class="mi">4</span>             <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>         <span class="mi">0</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>
+<span class="mi">5</span>             <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>         <span class="mi">0</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span>
+<span class="mi">6</span>             <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>         <span class="mi">1</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+<span class="mi">7</span>             <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>         <span class="mi">0</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>
+<span class="mi">8</span>             <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>         <span class="mi">1</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+<span class="mi">9</span>             <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>         <span class="mi">1</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>
+<span class="mi">10</span>            <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span>         <span class="mi">1</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>
+<span class="mi">11</span>            <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>         <span class="mi">0</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>
+<span class="mi">12</span>            <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>         <span class="mi">0</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span>
+<span class="mi">13</span>            <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>         <span class="mi">1</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+<span class="mi">14</span>            <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>         <span class="mi">0</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>
+<span class="o">--------------------------------------------------</span>
+<span class="n">Output</span><span class="p">:</span>  <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>At each step, with default ‘counter_start_zero = False’</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">state</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">fpoly</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">LFSR</span><span class="p">(</span><span class="n">initstate</span><span class="o">=</span><span class="n">state</span><span class="p">,</span><span class="n">fpoly</span><span class="o">=</span><span class="n">fpoly</span><span class="p">,</span><span class="n">counter_start_zero</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;count </span><span class="se">\t</span><span class="s1"> state </span><span class="se">\t\t</span><span class="s1">outbit </span><span class="se">\t</span><span class="s1"> seq&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">15</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">L</span><span class="o">.</span><span class="n">count</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">state</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">outbit</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">seq</span><span class="p">,</span><span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">L</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Output: &#39;</span><span class="p">,</span><span class="n">L</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">count</span>          <span class="n">state</span>          <span class="n">outbit</span>   <span class="n">seq</span>
+<span class="o">--------------------------------------------------</span>
+<span class="mi">1</span>     <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>         <span class="mi">1</span>       <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="mi">2</span>     <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>         <span class="mi">1</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>
+<span class="mi">3</span>     <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>         <span class="mi">1</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>
+<span class="mi">4</span>     <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span>         <span class="mi">0</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>
+<span class="mi">5</span>     <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>         <span class="mi">0</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span>
+<span class="mi">6</span>     <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>         <span class="mi">1</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+<span class="mi">7</span>     <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>         <span class="mi">0</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>
+<span class="mi">8</span>     <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>         <span class="mi">1</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+<span class="mi">9</span>     <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>         <span class="mi">1</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>
+<span class="mi">10</span>    <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>         <span class="mi">1</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>
+<span class="mi">11</span>    <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span>         <span class="mi">0</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>
+<span class="mi">12</span>    <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>         <span class="mi">0</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span><span class="p">]</span>
+<span class="mi">13</span>    <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>         <span class="mi">1</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+<span class="mi">14</span>    <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>         <span class="mi">0</span>       <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span><span class="p">]</span>
+<span class="o">--------------------------------------------------</span>
+<span class="n">Output</span><span class="p">:</span>  <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">PyLFSR</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=Nikeshbajaj&repo=Linear_Feedback_Shift_Register&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install/index.html#useful-links">Useful Links</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html#basic-examples">Basic Examples</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../properties/index.html">LFSR Properties</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Visualisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#printing-displaying-info">Printing/displaying Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameters-setting">Parameters setting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visualise-lfsr">Visualise LFSR</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dynamic-visualisation-of-lfsr-animation">Dynamic visualisation of LFSR - Animation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#show-each-state-and-each-cycle">Show each state and each cycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visualise-3-bit-lfsr">Visualise 3-bit LFSR</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../methods/index.html">List of Methods</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../generators/index.html">Generators</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_ref/api.html">API References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_ref/api.html#lfsr-class">LFSR Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_ref/api.html#list-of-methods">List of Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_ref/api.html#attributes">Attributes</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../matlab/index.html">Matlab Code</a></li>
+</ul>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script><div>
+    <h3>
+        Version selector
+    </h3>
+    <select id="dynamic_selector" name="versions" onchange="if (this.value) window.location.href=this.value">
+    </select>
+    <script>
+        obj = $.getJSON("https://raw.githubusercontent.com/Nikeshbajaj/Linear_Feedback_Shift_Register/master/versions.json")
+            .done(function (data) {
+                const base_url = "https://pylfsr.github.io/"
+                let html = "<option value='' selected>Choose version here</option>";
+                html += "<option value=" + base_url + ">latest" + ""
+                for (let i = 0; i < data.length; i++) {
+                    html += "<option value=" + base_url + "version/"  + data[i] + ">" + data[i] + ""
+                }
+                document.getElementById("dynamic_selector").innerHTML = html;
+            });
+    </script>
+</div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, Nikesh Bajaj.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/viz/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/Nikeshbajaj/Linear_Feedback_Shift_Register" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'G-94J9GBEGTM']);
+      _gaq.push(['_setDomainName', 'none']);
+      _gaq.push(['_setAllowLinker', true]);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+    
+  </body>
+</html>
