@@ -1,2 +1,0 @@
-# version
-Old version documentations
